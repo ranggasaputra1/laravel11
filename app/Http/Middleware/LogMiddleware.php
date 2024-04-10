@@ -14,6 +14,7 @@ class LogMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    //fungsi untuk mengecek log pada app laravel saat di run.Lihat log di (storage->logs)
     public function handle(Request $request, Closure $next): Response
     {
         Log::info("Handling Request : " .$request->fullUrl());
