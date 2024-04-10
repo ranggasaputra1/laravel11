@@ -14,9 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    //dibawah ini penggunaan middleware pastikan sudah membuat middleware nya
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(LogMiddleware::class);
     })
+    //dibawah ini penggunaan exception handler
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->renderable(function (ValidationError $exception, Request $request){
             return response("Bad Request", 400);
