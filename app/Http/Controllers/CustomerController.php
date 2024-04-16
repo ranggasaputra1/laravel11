@@ -24,7 +24,7 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      */
 
-    //  
+    //  fungsi untuk menambah data
     public function store(Request $request)
     {
         $customer = Customer::create([
@@ -41,6 +41,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
+    //fungsi untuk menampilkan data berdasarkan id
     public function show(Customer $customer)
     {
         return response()->json([
@@ -50,6 +51,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+    //fungsi update data
     public function update(Request $request, Customer $customer)
     {
         $customer->name = $request->name;
@@ -66,6 +69,8 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    //fungsi delete data
     public function destroy(Customer $customer)
     {
         $customer->delete();
