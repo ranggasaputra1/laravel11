@@ -10,6 +10,8 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    //  Fungsi Untuk menampilkan seluruh data
     public function index()
     {
         $customers = Customer::paginate(10);
@@ -21,6 +23,8 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    //  
     public function store(Request $request)
     {
         $customer = Customer::create([
