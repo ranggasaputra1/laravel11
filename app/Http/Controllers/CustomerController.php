@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Exception;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,13 +13,32 @@ class CustomerController extends Controller
      */
 
     //  Fungsi Untuk menampilkan seluruh data
-    public function index()
-    {
+    public function index(){
+    try {
         $customers = Customer::paginate(10);
+
+        if ($customers->isEmpty()) {
+            return response()->json([
+                "code" => "200",
+                "status" => "Success",
+                "message" => "Data Empty"
+            ]);
+        }
         return response()->json([
-            'data' => $customers
+            "code" => "200",
+            "status" => "Success",
+            "message" => "Successfully displayed customer data",
+            "data" => $customers
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            "code" => "500",
+            "status" => "Internal Server Error",
+            "message" => $e->getMessage()
         ]);
     }
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -26,17 +46,36 @@ class CustomerController extends Controller
 
     //  fungsi untuk menambah data
     public function store(Request $request)
-    {
+{
+    try{
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'id_number' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'email' => 'required|email'
+        ]);
+
         $customer = Customer::create([
             'name' => $request->name,
             'id_number' => $request->id_number,
             'dob' => $request->dob,
             'email' => $request->email
         ]);
+
         return response()->json([
-            'data' => $customer
+            "code" => "200",
+            "status" => "Success, Data customer has been added",
+            "data" => $customer
+        ]);
+    }catch(\Exception $e){
+        return response()->json([
+            "code" => "400",
+            "status" => "Bad Request",
+            "message" => $e->getMessage()
         ]);
     }
+}
+
 
     /**
      * Display the specified resource.
@@ -53,18 +92,35 @@ class CustomerController extends Controller
      */
 
     //fungsi update data
-    public function update(Request $request, Customer $customer)
-    {
+    public function update(Request $request, Customer $customer){
+        try{
+
+            $request->validate([
+            'name' => 'required|string|max:255',
+            'id_number' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'email' => 'required|email'
+            ]);
+
         $customer->name = $request->name;
         $customer->id_number = $request->id_number;
         $customer->dob = $request->dob;
         $customer->email = $request->email;
-
         $customer->save();
+
         return response()->json([
-            'data' => $customer
+            "code" => "200",
+            "status" => "Success, Data customer has been Update",
+            "data" => $customer
         ]);
-    }
+        }catch(Exception $e){
+            return response()->json([
+            "code" => "400",
+            "status" => "Bad Request",
+            "message" => $e->getMessage()
+            ]);
+        }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -73,9 +129,19 @@ class CustomerController extends Controller
     //fungsi delete data
     public function destroy(Customer $customer)
     {
+       try{
         $customer->delete();
         return response()->json([
-            'message' => 'customer has been deleted'
-        ], 204);
+            "code" => "200",
+            "status" => "Success",
+            "message" => "Data has been Deleted"
+        ]);
+       } catch(Exception $e){
+        return response()->json([
+            "code" => "500",
+            "status" => "Internal Server Error",
+            "message" => "Failed to Delete Data"
+        ]);
+       }
     }
 }
