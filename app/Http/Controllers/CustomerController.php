@@ -6,7 +6,7 @@ use App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
 
-// Learn Best Practice use GIT for Project
+// learn about development, staging, production phases
 
 class CustomerController extends Controller
 {
