@@ -6,7 +6,7 @@ use App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
 
-// learn about development, staging, production phases
+// initiation for laravel project using here maps
 
 class CustomerController extends Controller
 {
