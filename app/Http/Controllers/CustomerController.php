@@ -6,7 +6,7 @@ use App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
 
-// initiation for laravel project using here maps
+// Migrate database use Table Plus
 
 class CustomerController extends Controller
 {
