@@ -20,4 +20,9 @@ Route::get("/validation", function(){
     throw new ValidationError("Invalid Input");
 });
 
+//Route ke halaman MessageToWhatsapp
+Route::get('/message', function(){
+    return view('MessageToWhatsapp');
+});
+
 Route::resource('space', SpaceController::class )->middleware(auth::class, 'redirectTo');
