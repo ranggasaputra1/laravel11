@@ -36,6 +36,14 @@
         //   const urlToInstagram = `https://www.instagram.com/${instagramUsername}`;
         //   window.open(urlToInstagram, "_blank");
         // }
+
+        // Dibawah ini script untuk redirect ke Direct Message di instagram
+
+        // function sendRedirectMessageToInstagram() {
+        //   const instagramId = "user_id"; //Ganti dengan User_Id instagram
+        //   const instagramUrl = `https://www.instagram.com/direct/t/${instagramId}`;
+        //   window.open(instagramUrl, "_blank");
+        // }
     </script>
 </body>
 
