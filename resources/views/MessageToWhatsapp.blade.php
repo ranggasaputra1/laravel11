@@ -23,11 +23,19 @@
         </form>
     </div>
     <script>
+        // Send Message to whatsapp by direct message
         function sendMessageToWhatsapp() {
             const urlToWhatsapp = `https://wa.me/628119072423?text=Halo, nama saya ${nama.value}, ${pesan.value}`;
-
             window.open(urlToWhatsapp, "_blank");
         }
+
+        // Dibawah ini script untuk redirect ke profile instagram pastikan di tag form sudah ada onsubmitnya
+
+        // function sendMessageToInstagram() {
+        //   const instagramUsername = "username_instagram"; // Ganti dengan username Instagram
+        //   const urlToInstagram = `https://www.instagram.com/${instagramUsername}`;
+        //   window.open(urlToInstagram, "_blank");
+        // }
     </script>
 </body>
 
